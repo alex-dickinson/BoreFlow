@@ -1,0 +1,4 @@
+orig_source_ref,orig_source_z0(m),orig_source_z0_error(m),orig_source_z1(m),orig_source_z1_error(m),orig_source_lith_name,orig_source_lith_type
+Wheildon et al. (1985),0,0,200,20,St Bees Sandstone,sandstone
+Wheildon et al. (1985),200,20,280,20,St Bees Shale,shale
+Wheildon et al. (1985),280,20,base,0,Upper Coal Measures,coalmeasures

@@ -1,0 +1,208 @@
+462800,438800,Approach Farm,yn,yn
+341570,578150,Archerbeck,yn,n
+456510,415020,Askern No. 1,y,n
+518350,451710,Atwick No. 2,y,n
+517790,451860,Atwick No. 3,y,n
+517260,451770,Atwick No. 4,y,n
+518150,451770,Atwick No. 5,y,n
+518470,451330,Atwick No. 7,y,n
+517850,451060,Atwick No. 8,y,n
+324960,661250,Auchendinny,y,n
+477600,408500,Axholme No. 1,y,n
+479340,402970,Axholme No. 2,y,n
+463340,427850,Barlow No. 1,y,n
+515450,460620,Barmston No. 1,y,n
+472200,464670,Barton No. 1,yn,n
+386350,480160,Beckermonds Scar,yn,yn
+333924,575733,Beckhall,y,n
+335166,571578,Becklees,y,y
+427280,451860,Beckwithshaw,y,n
+457000,407500,Bentley Colliery,yn,n
+329960,663200,Bilston Glen Col,y,n
+375800,673170,Birnieknowes,yn,n
+332860,575530,Bogra,y,n
+434640,562230,Boldon Colliery,y,n
+473900,425800,Booth Ferry,yn,yn
+330400,694200,Boreland No. 1,y,y
+476100,518400,Boulby Mine Shaft No. 1,y,yn
+392690,434790,Boulsworth,y,n
+321150,695670,Bowhill Colliery,y,n
+313910,540710,Brayton Dom Colliery,y,n
+503770,406390,Brigg No. 1,y,n
+503780,406390,Brigg No. 2,y,n
+329210,660870,Broachrigg East ,y,n
+337660,576270,Broadmeadows,y,n
+456710,444090,Brocket Wood,yn,n
+451110,408800,Brodsworth B04,yn,n
+452300,403700,Brodsworth B20,yn,n
+452500,407500,Brodsworth Colliery,yn,n
+454800,406300,Brodsworth P03,yn,n
+452100,406300,Brodsworth P11,yn,n
+456300,406900,Brodsworth T36,yn,n
+489320,427710,Broomfleet 1,y,n
+494630,410760,Broughton B1,y,n
+487840,418830,Burton Stather,y,n
+484210,405630,Butterwick No. 1,y,n
+312760,686390,Calais 3,y,n
+334570,699010,Cameron,y,n
+331220,661030,Carrington 1,y,n
+456390,435490,Cawood Common,y,n
+530240,407090,Cleethorpes No. 1,y,y
+368600,446300,Clitheroe MHD2,y,y
+375550,440900,Clitheroe No. 2,y,y
+337740,667730,Cousland No. 5,y,n
+338350,668010,Cousland No. 6,y,n
+330720,569480,Cranberry,y,n
+491220,412870,Crosby Warren 1,y,n
+477340,411930,Crowle No. 1,y,n
+368530,525030,Dufton,y,n
+332640,672970,Eastfield Bore 1,y,n
+393870,538210,Eastgate,y,n
+328300,675950,Edinburgh (Leith Docks),y,y
+476960,502790,Egton Moor No. 1,y,n
+485440,504240,Eskdale No. 11,y,n
+485700,508200,Eskdale No. 12,yn,n
+336390,575938,Evertown,y,n
+434690,459960,Farnham,yn,n
+395790,583640,Ferneyrigg,yn,n
+505820,475700,Fordon No. 1,y,n
+508690,473600,Fordon No. 2,y,n
+332140,690500,Frances,y,n
+451000,410530,Frickley B68,yn,n
+449730,426330,Fryston,yn,n
+336514,574275,Glanzierfoot,yn,n
+519000,443280,Great Hatfield,y,n
+432170,444040,Harewood,y,y
+442210,498080,Harlsey No. 1,y,n
+439660,565620,Harton Dome No. 1,yn,n
+465300,411200,Hatfield Colliery,yn,n
+470350,406680,Hatfield Moors 1,y,n
+471740,406750,Hatfield Moors 2,y,n
+470380,406670,Hatfield Moors 3,y,n
+469310,406960,Hatfield No. 1,y,n
+467240,406750,Hatfield No. 2,y,n
+436000,546900,Hetton Colliery,y,n
+383850,408980,Heywood 1,y,n
+498940,403920,Hibaldstow 1,y,n
+388670,460310,High Ings Barn,yn,n
+386080,428780,Holme Chapel 1,y,n
+518460,450620,Hornsea No. 1,y,n
+513010,475880,Hunmanby,y,n
+450950,425650,Kellingley,yn,n
+313380,695450,Kelty Bridge,y,n
+427200,570500,Killingworth,y,n
+477110,478930,Kirby Misperton 1,y,n
+451140,416100,Kirk Smeaton 1,y,n
+343240,432470,Kirkham,yn,yn
+458790,521270,Kirkleatham No. 1,y,y
+,,Kirkleatham No. 2,y,n
+,,Kirkleatham No. 3,y,n
+339500,577150,Knottyholm,y,n
+332940,666660,Lady Victoria Co,y,n
+449340,465190,Langtoft No. 1,y,n
+301800,669100,Livingston,yn,yn
+332190,696590,Lochead,y,n
+490260,490140,Lockton 2A,y,n
+490900,492900,Lockton 3,y,n
+486900,488900,Lockton 4,y,n
+489301,491370,Lockton 5,y,n
+490960,487620,Lockton 6,y,n
+491730,490170,Lockton 7,y,n
+493610,489580,Lockton East No. 1,y,n
+490990,489480,Lockton No. 8,y,n
+414442,592553,Longhorsley No. 1,y,y
+330500,697950,Mackies Mill,y,n
+476330,477510,Malton 3,y,n
+485950,434680,Market Weighton,y,y
+464720,404920,Markham Main B20,yn,n
+463530,402380,Markham Main B40,yn,n
+404940,411810,Marsden,y,y
+397970,656860,Marshall Meadows,yn,yn
+336300,664700,Midlothian No. 1,yn,n
+466820,444120,Millfield,yn,n
+331750,699340,Milton Balgonie,y,n
+332420,670530,Monktonhall,y,n
+439300,558000,Monkwearmouth Colliery,y,n
+459710,443950,Naburn Grange,y,n
+364820,528820,Newbiggin,y,y
+424010,564330,Newcastle Science Central,y,n
+477390,513600,Newton Mulgrave No. 1,y,n
+493810,452770,North Dalton 1,y,n
+469120,435240,North Duffield,yn,yn
+428903,585951,North Seaton Mine,y,n
+450820,432350,Peckfield,yn,n
+432500,567900,Percy Main Colliery,y,n
+481660,449930,Pocklington No. 1,y,n
+307330,669790,Pumpherston,y,n
+467590,502430,Ralph Cross No. 1,y,n
+390260,484740,Raydale,y,yn
+387610,431950,Red Knoll,y,n
+501060,435780,Risby No. 1,y,n
+494780,504030,Robin Hood's Bay No. 1,y,n
+393760,542780,Rookhope,y,yn
+323040,468660,Roosecote,yn,n
+357800,405900,Rosebridge Colliery,yn,n
+472670,494960,Rosedale No. 1,y,n
+463840,401940,Rossington B06,yn,n
+341031,575743,Rowanburnfoot,y,n
+416634,558141,Rowlands Gill,y,y
+509340,466320,Rudston 1,y,n
+387810,432160,Saville Farm,yn,n
+331500,689230,Seafield,y,n
+453800,523800,Seal Sands,yn,n
+477020,438400,Seaton Ross No. 1,y,n
+461950,433320,Selby No. 3,yn,n
+347936,627852,Selkirk,y,y
+355900,508700,Shap,yn,yn
+454450,458600,Shipton - is this different to Shipton No. 2?,yn,yn
+454450,458600,Shipton No. 2,y,y
+312300,554840,Silloth No. 1,y,n
+312410,554380,Silloth No. 2,y,y
+331400,531400,Skiddaw,yn,yn
+466400,443700,Skipwith,yn,yn
+465400,440700,Skipwith Bridge,yn,yn
+482800,508300,Sleights A14,yn,n
+487910,435220,South Cliffe 1,y,n
+438120,545250,South Hetton,y,n
+446100,409200,South Kirby 1,y,n
+479270,432450,Spaldington 1,y,n
+345700,669020,Spilmersford,y,n
+332970,572270,Staffler,y,n
+476950,518513,Staithes No. 1,yn,n
+336330,664760,Stewart,y,n
+326590,666380,Straiton 1-1Z,y,n
+385970,450520,Swinden 1,y,n
+533250,400900,Tetney Lock,y,n
+470620,415900,Thorne Colliery,yn,n
+328890,697220,Thornton Bridge,y,n
+329690,697610,Thornton Farm,y,n
+333140,444090,Thornton-Cleveleys,y,y
+414560,567620,Throckley No. 1,yn,n
+463125,518028,Tocketts No. 1,y,y
+461800,459100,Towthorpe,yn,n
+460510,412590,Trumfleet No. 1,y,n
+460350,412470,Trumfleet No. 2,y,n
+460560,411410,Trumfleet No. 5,y,n
+481420,511710,Ugthorpe ,yn,n
+453940,401240,Warmsworth 1,y,n
+338900,435900,Weeton Camp,y,y
+429810,446380,Weeton No. 1,y,n
+333420,698330,Wellsgreen,y,n
+467600,446200,Wheldrake,y,n
+465410,472460,Whenby,y,n
+434980,574850,Whitley Bay,y,n
+472790,465750,Whitwell,y,n
+527410,424330,Winestead No. 1,y,n
+339119,574951,Woodhouselees,y,n
+409140,527630,Woodland,y,yn
+363160,465680,Wray,y,y
+492380,487340,Wykeham No. 1,y,n
+492260,508780,Yorkshire Potash No. 1,y,n
+496630,501300,Yorkshire Potash No. 12,y,n
+493990,506370,Yorkshire Potash No. 2,y,n
+491810,506690,Yorkshire Potash No. 3,y,n
+492450,508010,Yorkshire Potash No. 4,y,n
+489570,506850,Yorkshire Potash No. 5,y,n
+489600,508940,Yorkshire Potash No. 6,y,n
+494370,507370,Yorkshire Potash No. 7,y,n
+491510,507920,Yorkshire Potash No. 8,y,n
