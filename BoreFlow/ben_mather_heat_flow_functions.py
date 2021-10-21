@@ -2,8 +2,6 @@ import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib.patches as mpatches
 
-import csv
-import os
 from scipy.interpolate import UnivariateSpline
 from scipy import odr
 from scipy.special import erfc

@@ -1,8 +1,7 @@
 import numpy as np
-import pandas as pd
 import matplotlib.pyplot as plt
 
-from borehole_modules import general_python_functions
+from BoreFlow import general_python_functions
 
 
 def trim_conductivities(z_k_f, sigma_z_k_f, k_f, sigma_k_f, z_T_max_f):

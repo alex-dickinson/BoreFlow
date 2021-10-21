@@ -1,5 +1,7 @@
 include LICENSE
-include setup.cfg
 include MANIFEST.in
 include *.md
-recursive-include BoreFlow/data/
+include requirements.txt
+graft BoreFlow
+recursive-exclude * *.py[co]
+include setup.py

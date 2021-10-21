@@ -1,7 +1,7 @@
 import numpy as np
 import pandas as pd
 
-from borehole_modules import general_python_functions
+from BoreFlow import general_python_functions
 
 
 def cut_recent_climate_history(year, sigma_year, T, sigma_T, borehole_year):

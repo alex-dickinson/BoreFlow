@@ -1,0 +1,58 @@
+Metadata-Version: 2.1
+Name: BoreFlow
+Version: 0.0.1.dev0
+Summary: WHAT IS THE REASON YOU BUILD THIS PROJECT AND WHAT IT DOES
+Home-page: https://github.com/alex-dickinson/BoreFlow
+Author: Alex Dickinson, Ben Mather and Mark Ireland
+Author-email: nad38@cantab.ac.uk
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Intended Audience :: Science/Research
+Classifier: Topic :: ScientificProgramming Language :: Python :: 3
+Classifier: License :: OSI Approved :: GNU General Public License v3 (GPLv3)
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.7
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: numpy (>=1.19.0)
+Requires-Dist: scipy (>=1.5.1)
+Requires-Dist: pandas (>=1.0.5)
+Requires-Dist: matplotlib (>=3.3.3)
+Requires-Dist: openpyxl
+Provides-Extra: all
+Requires-Dist: jupyter ; extra == 'all'
+Provides-Extra: examples
+Requires-Dist: jupyter ; extra == 'examples'
+Provides-Extra: jupyter
+Requires-Dist: jupyter ; extra == 'jupyter'
+
+# BoreFlow
+
+## Installation
+
+Base dependencies:
+
+- [`numpy >= 1.19.0`](http://numpy.org)
+- [`scipy >= 1.5.1`](https://scipy.org)
+- [`pandas >= 1.0.5`](https://pandas.pydata.org/)
+- [`matplotlib >= 3.3.3`](https://matplotlib.org/)
+- [`openpyxl >= 3.0.9`](https://openpyxl.readthedocs.io/en/stable/)
+
+- [`numpy`](http://numpy.org)
+- [`scipy`](https://scipy.org)
+
+
+To install BoreFlow with its base dependencies:
+
+```bash
+pip install .
+```
+
+To install extra dependencies for running example notebooks:
+
+```bash
+pip install .[examples]
+```
+
+
+

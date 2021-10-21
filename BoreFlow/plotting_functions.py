@@ -14,7 +14,7 @@ from PIL import Image
 
 import pprint
 
-from borehole_modules import general_python_functions
+from BoreFlow import general_python_functions
 
 
 

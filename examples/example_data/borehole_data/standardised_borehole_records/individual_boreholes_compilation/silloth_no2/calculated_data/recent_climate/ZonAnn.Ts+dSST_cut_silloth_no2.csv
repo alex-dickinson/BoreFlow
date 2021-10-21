@@ -1,4 +1,4 @@
-### Input data: /Users/alex/Documents/newcastle_postdoc/nelep_heat_flow_project/nelep_heat_flow_data/climate_histories/goddard_climate_history_1880to2019/raw_data/ZonAnn.Ts+dSST.csv
+### Input data: ./example_data/climate_data/recent_climate_data/raw_data/ZonAnn.Ts+dSST.csv
 ### Cut off at year 1982
 recent_climtemp_year_cut,recent_climtemp_sigma_year_cut,recent_climtemp_t0_seconds_cut,recent_climtemp_sigma_t0_seconds_cut,recent_climtemp_t1_seconds_cut,recent_climtemp_sigma_t1_seconds_cut,recent_climtemp_deltaTs_cut,recent_climtemp_sigma_deltaTs_cut
 1880.0,0.5,3218783400.0000005,15778350.000000002,3187226700.0,15778350.000000002,-0.44,0.1

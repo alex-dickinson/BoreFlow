@@ -2,7 +2,7 @@
 import numpy as np
 
 # Local packages
-from borehole_modules import heat_flow_functions
+from BoreFlow import heat_flow_functions
 
 
 # ----------------------------------------------------------------

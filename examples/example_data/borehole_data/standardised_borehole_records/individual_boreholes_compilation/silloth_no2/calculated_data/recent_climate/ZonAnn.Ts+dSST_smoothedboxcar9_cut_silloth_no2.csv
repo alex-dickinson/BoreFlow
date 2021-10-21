@@ -1,4 +1,4 @@
-### Input data: /Users/alex/Documents/newcastle_postdoc/nelep_heat_flow_project/nelep_heat_flow_data/climate_histories/goddard_climate_history_1880to2019/calculated_data/ZonAnn.Ts+dSST_smoothedboxcar9.csv
+### Input data: ./example_data/climate_data/recent_climate_data/calculated_data/ZonAnn.Ts+dSST_smoothedboxcar9.csv
 ### Cut off at year 1982
 recent_climtemp_year_smoothing_cutoff_cut,recent_climtemp_sigma_year_smoothing_cutoff_cut,recent_climtemp_t0_seconds_smoothing_cutoff_cut,recent_climtemp_sigma_t0_seconds_smoothing_cutoff_cut,recent_climtemp_t1_seconds_smoothing_cutoff_cut,recent_climtemp_sigma_t1_seconds_smoothing_cutoff_cut,recent_climtemp_deltaTs_smoothed_cut,recent_climtemp_sigma_deltaTs_smoothed_cut
 1884.0,0.5,3092556600.0000005,15778350.000000002,3060999900.0,15778350.000000002,-0.47,0.1

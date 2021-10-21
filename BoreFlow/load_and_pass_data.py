@@ -9,8 +9,8 @@ import pandas as pd
 import pprint
 
 # Local packages
-from borehole_modules import general_python_functions
-from borehole_modules import heat_flow_functions
+from BoreFlow import general_python_functions
+from BoreFlow import heat_flow_functions
 
 # ----------------------------------------------------------------
 
