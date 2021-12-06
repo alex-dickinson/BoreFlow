@@ -68,7 +68,10 @@ def load_borehole_data(individual_boreholes_dir, borehole, temperatures_extensio
 	### Set up file paths and names
 	borehole_path = individual_boreholes_dir + "/" + borehole
 	raw_data_path = borehole_path + "/raw_data/" + borehole
-	figures_path = borehole_path + "/figures/" + borehole
+	figures_dir = borehole_path + "/figures"
+	print(figures_dir)
+	general_python_functions.set_up_directory(figures_dir)
+	figures_path = figures_dir + "/" + borehole
 	temperatures_file = raw_data_path + temperatures_extension # Load measured temperatures
 	conductivities_file = raw_data_path + conductivities_extension # Load measured conductivities
 		
