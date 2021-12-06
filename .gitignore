@@ -1,2 +1,12 @@
+# Mac/OSX
+.DS_Store
+
+# Python and iPython
 .ipynb_checkpoints
 *.pyc
+
+# Distribution / packaging
+build/
+dist/
+*.egg-info/
+pip-wheel-metadata/
