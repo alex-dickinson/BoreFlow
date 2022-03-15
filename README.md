@@ -4,6 +4,8 @@
 
 Base dependencies:
 
+Python 3?
+
 - [`matplotlib >= 3.3.3`](https://matplotlib.org/)
 - [`numpy >= 1.19.0`](http://numpy.org)
 - [`openpyxl >= 3.0.9`](https://openpyxl.readthedocs.io/en/stable/)
@@ -13,11 +15,31 @@ Base dependencies:
 
 Extra dependencies for running example notebooks:
 
-- [`jupyter`](https://jupyter.org/)
+- [`jupyter`](https://jupyter-notebook.readthedocs.io/en/stable/)
+- [`jupyterlab`](https://jupyterlab.readthedocs.io/en/stable/) 
+
+for running notebooks using either Jupyter Notebook or JupyterLab.
+
+
+To set up BoreFlow, first create conda environment:
+
+```conda create --name NAME```
+
+Activate conda environment:
+
+```conda activate NAME```
+
+Install python 3.8 and jupyter:
+
+```conda install python=3.8 jupyter```
 
 
 
 To install BoreFlow with its base dependencies:
+
+Navigate to directory BoreFlow
+
+
 
 ```bash
 pip install .
