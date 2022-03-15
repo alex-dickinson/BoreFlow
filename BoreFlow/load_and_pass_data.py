@@ -69,7 +69,6 @@ def load_borehole_data(individual_boreholes_dir, borehole, temperatures_extensio
 	borehole_path = individual_boreholes_dir + "/" + borehole
 	raw_data_path = borehole_path + "/raw_data/" + borehole
 	figures_dir = borehole_path + "/figures"
-	print(figures_dir)
 	general_python_functions.set_up_directory(figures_dir)
 	figures_path = figures_dir + "/" + borehole
 	temperatures_file = raw_data_path + temperatures_extension # Load measured temperatures
@@ -471,7 +470,21 @@ def cut_top_depth(z_m_uncut, cut_top_m, suffix_root, *args):
 		cut_list = [z_m_uncut[cut_indices], suffix_root + 'ct' + str(cut_top_m) + 'm']
 		for arg in args: cut_list.append(arg[cut_indices])
 	return(tuple(cut_list))
-	
+
+def bottomhole_selection(z_m_whole, bottomhole_option, suffix_root, cut_top_m, *args):
+	if bottomhole_option == None:
+		bottomhole_list = [z_m_whole, suffix_root, cut_top_m]
+		for arg in args: bottomhole_list.append(arg)
+	elif bottomhole_option == 'deepest':
+		bottomhole_list = [z_m_whole[-1], suffix_root + 'bthdpst' + str(z_m_whole[-1]) + 'm', None]
+		for arg in args: bottomhole_list.append(arg[-1])
+	elif type(bottomhole_option) == int or type(bottomhole_option) == float:
+		bottomhole_index = (np.abs(z_m_whole - bottomhole_option)).argmin()
+		bottomhole_list = [z_m_whole[bottomhole_index], suffix_root + 'bthspec' + str(bottomhole_option) + 'm' + str(z_m_whole[bottomhole_index]) + 'm', None]
+		for arg in args: bottomhole_list.append(arg[bottomhole_index])
+	return(tuple(bottomhole_list))
+		
+		
 
 
 
