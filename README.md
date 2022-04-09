@@ -4,7 +4,7 @@
 
 Base dependencies:
 
-Python 3?
+Python 3.8.12
 
 - [`matplotlib >= 3.3.3`](https://matplotlib.org/)
 - [`numpy >= 1.19.0`](http://numpy.org)

@@ -14,50 +14,50 @@ from BoreFlow import heat_flow_functions
 
 # ----------------------------------------------------------------
 
-# ### FUNCTIONS FOR LOADING SURFACE TEMPERATURE HISTORIES ###
-#
-# def load_palaeoclimate(palaeoclimate_csv):
-# 	# TODO Include uncertainties in t0 and t1
-# 	palaeoclimate = np.loadtxt(palaeoclimate_csv, delimiter=',', skiprows=1)
-# 	palaeoclimate_t0_seconds = general_python_functions.y2s(palaeoclimate[:,1]*1e3) # Start of period of temperature palaeoclimate_deltaTs in seconds
-# 	palaeoclimate_t1_seconds = general_python_functions.y2s(palaeoclimate[:,0]*1e3) # End of period of temperature palaeoclimate_deltaTs in seconds
-# 	palaeoclimate_t1_seconds[0] = 3e9 # Set to non-zero to prevent division by zero
-# 	palaeoclimate_deltaTs = palaeoclimate[:,2] # Palaeoclimatic temperature
-# 	palaeoclimate_sigma_deltaTs = palaeoclimate[:,3] # Uncertainty in Tc
-# 	# Flip arrays so that oldest values (i.e. largest t0) are given first
-# 	palaeoclimate_t0_seconds, palaeoclimate_t1_seconds, palaeoclimate_deltaTs, palaeoclimate_sigma_deltaTs = np.flip(palaeoclimate_t0_seconds), np.flip(palaeoclimate_t1_seconds), np.flip(palaeoclimate_deltaTs), np.flip(palaeoclimate_sigma_deltaTs)
-# 	return(palaeoclimate_t0_seconds, palaeoclimate_t1_seconds, palaeoclimate_deltaTs, palaeoclimate_sigma_deltaTs)
-#
-# def load_recent_climate_history(recent_temperature_history_file):
-# 	# TODO Add uncertainties
-# 	recent_temperature_history_year, recent_temperature_history_deltaTs = np.loadtxt(recent_temperature_history_file, delimiter=',', skiprows=1, unpack=True, usecols=(0,8))
-# 	return(recent_temperature_history_year, recent_temperature_history_deltaTs)
-#
-# def load_surface_temperature_histories(palaeoclimate_csv, recent_climtemp_hist_csv, recent_climtemp_smoother, recent_climtemp_smoothing_length, recent_climtemp_smoothed_outfile):
-# 	# Load palaeoclimate history
-# 	palaeoclimate_t0_seconds, palaeoclimate_t1_seconds, palaeoclimate_deltaTs, palaeoclimate_sigma_deltaTs = load_palaeoclimate(palaeoclimate_csv)
-# 	palaeoclimate_suffix = "_pc"
-#
-# 	# Load time series of recent temperature changes at surface - NASA record of global temperature change within latitude bands. British mainland approx 50 to 60 N therefore use latitude band 44N - 64N. In ninth column
-# 	# TODO - add uncertainty
-# 	recent_climtemp_year, recent_climtemp_deltaTs = load_recent_climate_history(recent_climtemp_hist_csv)
-# 	recent_climtemp_suffix = "_rc"
-# 	# Smooth temperature history
-# 	if recent_climtemp_smoother == "boxcar":
-# 		recent_climtemp_year_smoothing_cutoff, recent_climtemp_deltaTs_smoothed = general_python_functions.smooth_data_boxcar(recent_climtemp_year, recent_climtemp_deltaTs, recent_climtemp_smoothing_length)
-# 		dtemp = {'recent_climtemp_year_smoothing_cutoff':recent_climtemp_year_smoothing_cutoff, 'recent_climtemp_deltaTs_smoothed':recent_climtemp_deltaTs_smoothed}
-# 		recent_climtemp_smoothed_df = pd.DataFrame(data=dtemp)
-# 		ftemp = open(recent_climtemp_smoothed_outfile + '.csv', 'w')
-# 		ftemp.write('### Original data: ' + str(recent_climtemp_hist_csv) + "\n")
-# 		ftemp.write('### Smoothed with boxcar filter of length ' + str(recent_climtemp_smoothing_length) + "\n")
-# 		recent_climtemp_smoothed_df.to_csv(ftemp, index=False)
-# 		ftemp.close()
-# 		recent_climtemp_suffix = recent_climtemp_suffix + '_bcs' + str(recent_climtemp_smoothing_length)
-# 	else:
-# 		print("Smoothing for recent climate not specified - exiting")
-# 		exit()
-#
-# 	return(palaeoclimate_t0_seconds, palaeoclimate_t1_seconds, palaeoclimate_deltaTs, palaeoclimate_sigma_deltaTs, recent_climtemp_year, recent_climtemp_deltaTs, recent_climtemp_year_smoothing_cutoff, recent_climtemp_deltaTs_smoothed, recent_climtemp_smoothed_df, palaeoclimate_suffix, recent_climtemp_suffix)
+### FUNCTIONS FOR LOADING SURFACE TEMPERATURE HISTORIES ###
+
+def load_palaeoclimate(palaeoclimate_csv):
+	# TODO Include uncertainties in t0 and t1
+	palaeoclimate = np.loadtxt(palaeoclimate_csv, delimiter=',', skiprows=1)
+	palaeoclimate_t0_seconds = general_python_functions.y2s(palaeoclimate[:,1]*1e3) # Start of period of temperature palaeoclimate_deltaTs in seconds
+	palaeoclimate_t1_seconds = general_python_functions.y2s(palaeoclimate[:,0]*1e3) # End of period of temperature palaeoclimate_deltaTs in seconds
+	palaeoclimate_t1_seconds[0] = 3e9 # Set to non-zero to prevent division by zero
+	palaeoclimate_deltaTs = palaeoclimate[:,2] # Palaeoclimatic temperature
+	palaeoclimate_sigma_deltaTs = palaeoclimate[:,3] # Uncertainty in Tc
+	# Flip arrays so that oldest values (i.e. largest t0) are given first
+	palaeoclimate_t0_seconds, palaeoclimate_t1_seconds, palaeoclimate_deltaTs, palaeoclimate_sigma_deltaTs = np.flip(palaeoclimate_t0_seconds), np.flip(palaeoclimate_t1_seconds), np.flip(palaeoclimate_deltaTs), np.flip(palaeoclimate_sigma_deltaTs)
+	return(palaeoclimate_t0_seconds, palaeoclimate_t1_seconds, palaeoclimate_deltaTs, palaeoclimate_sigma_deltaTs)
+
+def load_recent_climate_history(recent_temperature_history_file):
+	# TODO Add uncertainties
+	recent_temperature_history_year, recent_temperature_history_deltaTs = np.loadtxt(recent_temperature_history_file, delimiter=',', skiprows=1, unpack=True, usecols=(0,8))
+	return(recent_temperature_history_year, recent_temperature_history_deltaTs)
+
+def load_surface_temperature_histories(palaeoclimate_csv, recent_climtemp_hist_csv, recent_climtemp_smoother, recent_climtemp_smoothing_length, recent_climtemp_smoothed_outfile):
+	# Load palaeoclimate history
+	palaeoclimate_t0_seconds, palaeoclimate_t1_seconds, palaeoclimate_deltaTs, palaeoclimate_sigma_deltaTs = load_palaeoclimate(palaeoclimate_csv)
+	palaeoclimate_suffix = "_pc"
+
+	# Load time series of recent temperature changes at surface - NASA record of global temperature change within latitude bands. British mainland approx 50 to 60 N therefore use latitude band 44N - 64N. In ninth column
+	# TODO - add uncertainty
+	recent_climtemp_year, recent_climtemp_deltaTs = load_recent_climate_history(recent_climtemp_hist_csv)
+	recent_climtemp_suffix = "_rc"
+	# Smooth temperature history
+	if recent_climtemp_smoother == "boxcar":
+		recent_climtemp_year_smoothing_cutoff, recent_climtemp_deltaTs_smoothed = general_python_functions.smooth_data_boxcar(recent_climtemp_year, recent_climtemp_deltaTs, recent_climtemp_smoothing_length)
+		dtemp = {'recent_climtemp_year_smoothing_cutoff':recent_climtemp_year_smoothing_cutoff, 'recent_climtemp_deltaTs_smoothed':recent_climtemp_deltaTs_smoothed}
+		recent_climtemp_smoothed_df = pd.DataFrame(data=dtemp)
+		ftemp = open(recent_climtemp_smoothed_outfile + '.csv', 'w')
+		ftemp.write('### Original data: ' + str(recent_climtemp_hist_csv) + "\n")
+		ftemp.write('### Smoothed with boxcar filter of length ' + str(recent_climtemp_smoothing_length) + "\n")
+		recent_climtemp_smoothed_df.to_csv(ftemp, index=False)
+		ftemp.close()
+		recent_climtemp_suffix = recent_climtemp_suffix + '_bcs' + str(recent_climtemp_smoothing_length)
+	else:
+		print("Smoothing for recent climate not specified - exiting")
+		exit()
+	
+	return(palaeoclimate_t0_seconds, palaeoclimate_t1_seconds, palaeoclimate_deltaTs, palaeoclimate_sigma_deltaTs, recent_climtemp_year, recent_climtemp_deltaTs, recent_climtemp_year_smoothing_cutoff, recent_climtemp_deltaTs_smoothed, recent_climtemp_smoothed_df, palaeoclimate_suffix, recent_climtemp_suffix)
 
 # ----------------------------------------------------------------
 

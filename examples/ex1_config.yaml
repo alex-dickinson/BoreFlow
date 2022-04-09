@@ -1,0 +1,68 @@
+climate:
+    palaeoclimate:
+        pc_excel: "./example_data/climate_data/palaeoclimate_data/northern_england_palaeoclimate_from_westaway_and_younger_2013.xlsx"
+        pc_sigma_ty_type: 'constant_assigned'
+        pc_sigma_ty_cst: 1e3
+        pc_sigma_ty_dist: 'normal'
+        pc_sigma_deltaTs_type: 'constant_assigned'
+        pc_sigma_deltaTs_cst: 0.5
+        pc_sigma_deltaTs_dist: 'normal'
+    recent_climate:
+        rc_filename: "ZonAnn.Ts+dSST"
+        rc_input_csv: "./example_data/climate_data/recent_climate_data/raw_data/ZonAnn.Ts+dSST.csv"
+        rc_calc_folder: "./example_data/climate_data/recent_climate_data/calculated_data"
+        rc_sigma_ty_type: "constant_assigned"
+        rc_sigma_ty_cst: 0.5
+        rc_sigma_ty_smoothing_cutoff_cst: rc_sigma_ty_cst
+        rc_sigma_deltaTs_cst: 0.1
+        rc_sigma_deltaTs_smoothed_cst: 0.1
+        ### TODO rc_sigma_ty_dist should be uniform
+        rc_sigma_ty_dist: 'normal'
+        rc_sigma_ty_smoothing_cutoff_dist: 'normal'
+        rc_sigma_deltaTs_dist: 'normal'
+        rc_sigma_deltaTs_smoothed_dist: 'normal'
+        rc_smoother: "boxcar"
+        rc_smoothing_length: 9
+borehole:
+    filenames:
+        all_boreholes_overview_file: "./example_data/borehole_data/standardised_borehole_records/boreholes_overview_spreadsheet/boreholes_overview_spreadsheet.xlsx"
+        individual_boreholes_dir: "./example_data/borehole_data/standardised_borehole_records/individual_boreholes_compilation"
+        conductivities_extension: "_conds"
+        temperatures_extension: "_temps"
+        borehole_list: [
+            # "becklees",
+            # "newbiggin",
+            "silloth_no2",
+            # "rowlands_gill",
+            # "selkirk",
+            # "ferneyrigg - doesn't currently work",
+            # "rookhope",
+            # "tocketts",
+            # "woodland" - doesn't currently work",  
+        ]
+    temperature_preprocessing:
+        temps_preprocessing_dict: {
+            'cut_top_m_list':[None,100],
+            'bottomhole_list':[None,'deepest',100],
+            'layer_division':{
+                'layer_division_option':'no', 'layer_division_thickness_m':[100]
+            },
+        }
+    monte_carlo:
+        monte_carlo_dict: {
+            #'monte_carlo_option_list':[None],
+            'monte_carlo_option_list':['all'],
+            'monte_carlo_nsim_list':[10],
+            'monte_carlo_T_subsample_factor_list':[2],
+            'monte_carlo_in_situ_k_subsample_factor_list':[2]
+        }
+        # monte_carlo_T_subsample_type: 'regular'
+        monte_carlo_T_subsample_type: 'random'
+        # monte_carlo_in_situ_k_subsample_type: 'regular'
+        monte_carlo_in_situ_k_subsample_type: 'random'
+    climatic_corrections:
+        cc_type_list: ['cst_borehole_conductivity']
+        pcc_option_list: ['yes']
+        rcc_option_list: ['yes']
+        
+        

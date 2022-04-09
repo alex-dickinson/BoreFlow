@@ -12,11 +12,11 @@ import pprint
 from BoreFlow import general_python_functions
 from BoreFlow import heat_flow_functions
 
-# ----------------------------------------------------------------
-
+# # ----------------------------------------------------------------
+#
 # ### FUNCTIONS FOR LOADING SURFACE TEMPERATURE HISTORIES ###
 #
-# def load_palaeoclimate(palaeoclimate_csv):
+# def load_goddard_palaeoclimate(palaeoclimate_csv):
 # 	# TODO Include uncertainties in t0 and t1
 # 	palaeoclimate = np.loadtxt(palaeoclimate_csv, delimiter=',', skiprows=1)
 # 	palaeoclimate_t0_seconds = general_python_functions.y2s(palaeoclimate[:,1]*1e3) # Start of period of temperature palaeoclimate_deltaTs in seconds
@@ -26,6 +26,7 @@ from BoreFlow import heat_flow_functions
 # 	palaeoclimate_sigma_deltaTs = palaeoclimate[:,3] # Uncertainty in Tc
 # 	# Flip arrays so that oldest values (i.e. largest t0) are given first
 # 	palaeoclimate_t0_seconds, palaeoclimate_t1_seconds, palaeoclimate_deltaTs, palaeoclimate_sigma_deltaTs = np.flip(palaeoclimate_t0_seconds), np.flip(palaeoclimate_t1_seconds), np.flip(palaeoclimate_deltaTs), np.flip(palaeoclimate_sigma_deltaTs)
+#
 # 	return(palaeoclimate_t0_seconds, palaeoclimate_t1_seconds, palaeoclimate_deltaTs, palaeoclimate_sigma_deltaTs)
 #
 # def load_recent_climate_history(recent_temperature_history_file):
@@ -61,7 +62,7 @@ from BoreFlow import heat_flow_functions
 
 # ----------------------------------------------------------------
 
-### FUNCTIONS FOR LOADING BOREHOLE DATA ###
+### FUNCTIONS FOR LOADING EXAMPLE BOREHOLE DATA ###
 
 def load_borehole_data(individual_boreholes_dir, borehole, temperatures_extension, conductivities_extension, all_borehole_overview_df, cermak1982_cond_dict, rollin1987_cond_dict, ukogl_well_tops_depth_error_m, liths_lookup_dict_df, rollin1987_unit_plot_dict, cermak1982_unit_plot_dict):
 	

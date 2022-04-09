@@ -203,9 +203,5 @@ def gradient_uncertainty(xdata, ydata):
 	residual_squared = np.power((xdata[:] - ydata[:]), 2.)
 	sigma_estimate = np.power((np.sum(np.power(residual_squared, 2.))/(np.size(residual_squared) - 2.)), 0.5)
 	return(residual_squared, sigma_estimate)
-
-# --------------
-# Create empty class
-class EmptyClass:
-	pass
+	
 	
