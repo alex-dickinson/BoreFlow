@@ -1,0 +1,9 @@
+zk_m,zk_quoted_error_m,zk_assigned_error_m,z0_m,z0_quoted_error_m,z0_assigned_error_m,z1_m,z1_quoted_error_m,z1_assigned_error_m,geological_description,number_k_samples,mean_k,k_quoted_error,min_k,max_k,k_assigned_error,k_distribution
+nan,nan,nan,0.0,nan,0,46.55,nan,2,nan,nan,nan,nan,nan,nan,nan,uniform
+nan,nan,nan,46.55,nan,2,203.9,nan,2,mudrock,1467.0,nan,nan,0.5,4.25,nan,uniform
+nan,nan,nan,203.9,nan,2,211.0,nan,2,evaporite,147.0,nan,nan,1.0,7.15,nan,uniform
+nan,nan,nan,211.0,nan,2,240.8,nan,2,mudrock,1467.0,nan,nan,0.5,4.25,nan,uniform
+nan,nan,nan,240.8,nan,2,241.0,nan,2,sandstone,1262.0,2.47,nan,0.9,6.55,nan,uniform
+nan,nan,nan,241.0,nan,2,247.0,nan,2,mudrock,1467.0,nan,nan,0.5,4.25,nan,uniform
+nan,nan,nan,247.0,nan,2,247.03,nan,2,sandstone,1262.0,2.47,nan,0.9,6.55,nan,uniform
+nan,nan,nan,247.03,nan,2,351.4,nan,2,mudrock,1467.0,nan,nan,0.5,4.25,nan,uniform

@@ -1,0 +1,60 @@
+climate:
+    palaeoclimate:
+        pc_excel: "./example_data/climate_data/palaeoclimate_data/northern_england_palaeoclimate_from_westaway_and_younger_2013.xlsx"
+        pc_sigma_ty_type: 'constant_assigned'
+        pc_sigma_ty_cst: 1e3
+        pc_sigma_ty_dist: 'normal'
+        pc_sigma_deltaTs_type: 'constant_assigned'
+        pc_sigma_deltaTs_cst: 0.5
+        pc_sigma_deltaTs_dist: 'normal'
+    recent_climate:
+        rc_filename: "ZonAnn.Ts+dSST"
+        rc_input_csv: "./example_data/climate_data/recent_climate_data/raw_data/ZonAnn.Ts+dSST.csv"
+        rc_calc_folder: "./example_data/climate_data/recent_climate_data/calculated_data"
+        rc_sigma_ty_type: "constant_assigned"
+        rc_sigma_ty_cst: 0.5
+        rc_sigma_ty_smoothing_cutoff_cst: rc_sigma_ty_cst
+        rc_sigma_deltaTs_cst: 0.1
+        rc_sigma_deltaTs_smoothed_cst: 0.1
+        ### TODO rc_sigma_ty_dist should be uniform
+        rc_sigma_ty_dist: 'normal'
+        rc_sigma_ty_smoothing_cutoff_dist: 'normal'
+        rc_sigma_deltaTs_dist: 'normal'
+        rc_sigma_deltaTs_smoothed_dist: 'normal'
+        rc_smoother: "boxcar"
+        rc_smoothing_length: 9
+borehole:
+    filenames:
+        borehole_dir: "./example1_data"
+        borehole_name: "silloth_no2"
+        input_temperature_file: "./example1_data/silloth_no2_temps"
+        temperatures_extension: "_temps"
+        temperatures_filetype: "excel"
+        in_situ_conds: "yes"
+        conductivities_extension: "_conds"
+        conductivities_filetype: "excel"
+    errors_option: "assigned"
+    temperature_preprocessing:
+        T_suffix: '_T'
+        cut_top_m: 100.
+        bottomhole_option: 'deepest'
+        layer_division_option: 'no'
+        layer_division_thickness_m: 100
+    monte_carlo:
+        monte_carlo_dict: {
+            #'monte_carlo_option_list':[None],
+            'monte_carlo_option_list':['all'],
+            'monte_carlo_nsim_list':[10],
+            'monte_carlo_T_subsample_factor_list':[2],
+            'monte_carlo_in_situ_k_subsample_factor_list':[2]
+        }
+        # monte_carlo_T_subsample_type: 'regular'
+        monte_carlo_T_subsample_type: 'random'
+        # monte_carlo_in_situ_k_subsample_type: 'regular'
+        monte_carlo_in_situ_k_subsample_type: 'random'
+    climatic_corrections:
+        cc_type_list: ['cst_borehole_conductivity']
+        pcc_option_list: ['yes']
+        rcc_option_list: ['yes']
+        
+        

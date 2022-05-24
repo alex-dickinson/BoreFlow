@@ -33,6 +33,9 @@ Install python 3.8 and jupyter:
 
 ```conda install python=3.8 jupyter```
 
+Add conda environment as a Jupyter kernel:
+
+```ipython kernel install --name "NAME" --user```
 
 
 To install BoreFlow with its base dependencies:
