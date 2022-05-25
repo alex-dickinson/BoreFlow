@@ -39,7 +39,7 @@ def smooth_data_boxcar(xdata, ydata, smoothing_length):
 
 # ----------------------------------------------------------------
 
-# Sort arrays based on ordering of first array
+# Sort arrays based on monotonic increasing of first array
 def sort_arrays(sort_array, *args):
 	indices = np.argsort(sort_array)
 	sorted_array = sort_array[indices]

@@ -34,10 +34,16 @@ borehole:
         conductivities_extension: "_conds"
         conductivities_filetype: "excel"
     errors_option: "assigned"
+    errors_type: "not_used"
     temperature_preprocessing:
+        T_errors_option: "assigned"
+        # Todo: read type of error from file
+        T_errors_dist: "normal"
         T_suffix: '_T'
-        cut_top_m: 100.
-        bottomhole_option: 'deepest'
+        T_cut_top_m: 100.
+        T_bottomhole_option: 'deepest'
+        T_subsample_factor: 2.
+        T_subsample_type: 'random'
         layer_division_option: 'no'
         layer_division_thickness_m: 100
     monte_carlo:
