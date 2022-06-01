@@ -5,6 +5,7 @@ import matplotlib.pyplot as plt
 
 
 from BoreFlow import general_python_functions
+from BoreFlow import plotting_functions
 
 
 def call_function():
@@ -23,16 +24,16 @@ def cut_top_depth(z_m_uncut, cut_top_m, suffix_root, *args):
 	return(tuple(cut_list))
 
 
-def select_bottomhole(z_m_whole, bottomhole_option, suffix_root, cut_top_m, *args):
+def select_bottomhole(z_m_whole, bottomhole_option, suffix_root, *args):
 	if bottomhole_option == None:
-		bottomhole_list = [z_m_whole, suffix_root, cut_top_m]
+		bottomhole_list = [z_m_whole, suffix_root]
 		for arg in args: bottomhole_list.append(arg)
 	elif bottomhole_option == 'deepest':
-		bottomhole_list = [z_m_whole[-1], str(suffix_root) + 'bthdpst' + str(z_m_whole[-1]) + 'm', None]
+		bottomhole_list = [z_m_whole[-1], str(suffix_root) + 'bthdpst' + str(z_m_whole[-1]) + 'm']
 		for arg in args: bottomhole_list.append(arg[-1])
 	elif type(bottomhole_option) == int or type(bottomhole_option) == float:
 		bottomhole_index = (np.abs(z_m_whole - bottomhole_option)).argmin()
-		bottomhole_list = [z_m_whole[bottomhole_index], str(suffix_root) + 'bthspec' + str(bottomhole_option) + 'm' + str(z_m_whole[bottomhole_index]) + 'm', None]
+		bottomhole_list = [z_m_whole[bottomhole_index], str(suffix_root) + 'bthspec' + str(bottomhole_option) + 'm' + str(z_m_whole[bottomhole_index]) + 'm']
 		for arg in args: bottomhole_list.append(arg[bottomhole_index])
 	return(tuple(bottomhole_list))
 
@@ -131,16 +132,25 @@ class BoreHole:
 		T_cut_top_m = self.config['temperature_preprocessing']['T_cut_top_m']
 		z_cut, outsuffix_cut, T_cut, z_error_cut, T_error_cut = cut_top_depth(x.z, T_cut_top_m, insuffix, x.T, x.z_error, x.T_error)
 		
-		setattr(self.data.borehole, outsuffix, general_python_functions.EmptyClass())
-		y = getattr(self.data.borehole, outsuffix)
+		setattr(self.data.borehole, outsuffix_cut, general_python_functions.EmptyClass())
+		y = getattr(self.data.borehole, outsuffix_cut)
 		y.z, y.z_error, y.T, y.T_error = z_cut, z_error_cut, T_cut, T_error_cut
 		
 		return(outsuffix_cut)
 		
 		
-	def select_bottomhole_temperature(self):
-		self.data.borehole.T_bottomhole_option = self.config['temperature_preprocessing']['T_bottomhole_option']
-		self.data.borehole.zT_m_bottomhole, self.data.borehole.T_bottomhole_suffix, self.data.borehole.T_cut_top_m, self.data.borehole.T_bottomhole, self.data.borehole.zT_error_m_bottomhole, self.data.borehole.T_error_bottomhole = select_bottomhole(self.data.borehole.zT_m, self.data.borehole.T_bottomhole_option, self.data.borehole.T_suffix, self.data.borehole.T_cut_top_m, self.data.borehole.T, self.data.borehole.zT_error_m, self.data.borehole.T_error)
+	def select_bottomhole_temperature(self, insuffix):
+		x = getattr(self.data.borehole, insuffix)
+
+		T_bottomhole_option = self.config['temperature_preprocessing']['T_bottomhole_option']
+
+		z_bottomhole, outsuffix_bottomhole, T_bottomhole, z_error_bottomhole, T_error_bottomhole = select_bottomhole(x.z, T_bottomhole_option, insuffix, x.T, x.z_error, x.T_error)
+
+		setattr(self.data.borehole, outsuffix_bottomhole, general_python_functions.EmptyClass())
+		y = getattr(self.data.borehole, outsuffix_bottomhole)
+		y.z, y.z_error, y.T, y.T_error = z_bottomhole, z_error_bottomhole, T_bottomhole, T_error_bottomhole
+
+		return(outsuffix_bottomhole)
 	
 	
 	def subsample_temperature(self, insuffix):
@@ -178,6 +188,295 @@ class BoreHole:
 	
 	### TEMPORARY ---------
 	# Temporary
+	def build_plots(max_depth_m_plot, k_distribution, plot_lith_fill_dict, plot_lith_fill_dict_keyword, strat_interp_lith_k_calcs_df, T_plotting_dict, k_plotting_dict, res_plotting_dict, bullard_TvR_plotting_dict, bullard_RvT_plotting_dict, pc_plotting_dict, rc_plotting_dict, qhist_plotting_dict, T, figure_name):
+	
+	# Set up figure limits
+	min_depth_m=0
+	max_depth_m=max_depth_m_plot
+	
+	min_T=np.min(T) - 0.05 * np.ptp(T)
+	max_T=np.max(T) + 0.05 * np.ptp(T)
+	
+	min_k=0
+	max_k=7
+		
+	# if 'layer_k_plot' in k_plotting_dict['line0']:
+	# 	print('layer_k_plot')
+	# 	min_k = np.min(k_plotting_dict['line0']['layer_k_plot']) - 0.05 * np.ptp(k_plotting_dict['line0']['layer_k_plot'])
+	# 	max_k = np.max(k_plotting_dict['line0']['layer_k_plot']) + 0.05 * np.ptp(k_plotting_dict['line0']['layer_k_plot'])
+	# elif 'min_k' in k_plotting_dict['line0'] and 'max_k' in k_plotting_dict['line0']:
+	# 	print('min_k')
+	# 	min_k = np.min(k_plotting_dict['line0']['min_k']) - 0.05 * (np.max(k_plotting_dict['line0']['max_k']) - np.min(k_plotting_dict['line0']['min_k']))
+	# 	max_k = np.max(k_plotting_dict['line0']['max_k']) + 0.05 * (np.max(k_plotting_dict['line0']['max_k']) - np.min(k_plotting_dict['line0']['min_k']))
+	# print(min_k, max_k)
+	
+	min_R=0
+	max_R=300
+	# if res_plotting_dict != None:
+# 		min_R = np.min(res_plotting_dict['line0']['R_plot']) - 0.05 * np.ptp(res_plotting_dict['line0']['R_plot'])
+# 		max_R = np.max(res_plotting_dict['line0']['R_plot']) + 0.05 * np.ptp(res_plotting_dict['line0']['R_plot'])
+# 	print(min_R, max_R, "min_R, max_R")
+	
+	min_Q = 25
+	max_Q = 90
+	
+
+	
+	
+	
+	z_int_plot = np.concatenate(np.column_stack((strat_interp_lith_k_calcs_df['z0_m'], strat_interp_lith_k_calcs_df['z1_m'])))
+	
+	# Set up plotting preferences - define in YAML
+	axis_setup_dict = {
+		'figure_width':7.25,
+		'figure_height':10,
+		'init_xpos':0,
+		'init_ypos':10,
+		'figure_label_inset':0.125
+	}
+	
+	axis_position_dict = {
+		'temp':{'width':2, 'height':4, 'hspace_after':2.5, 'vspace_after':0},
+		'strat':{'width':0.25, 'height':4, 'hspace_after':0.5, 'vspace_after':0},
+		'cond':{'width':2, 'height':4, 'hspace_after':2.25, 'vspace_after':0},
+		'res':{'width':2, 'height':4, 'hspace_after':-5.25, 'vspace_after':-2.25},
+		'pc':{'width':3.5, 'height':2, 'hspace_after':3.75, 'vspace_after':0},
+		'rc':{'width':3.5, 'height':2, 'hspace_after':4.75, 'vspace_after':3.25},
+		'bullard':{'width':3.5, 'height':3, 'hspace_after':0, 'vspace_after':-3.25},
+		'qhist':{'width':3.5, 'height':3, 'hspace_after':0, 'vspace_after':0}
+		# 'row_spacings':[0.25,1], 'column_spacing':0.25
+	}
+	
+	# # Set up plotting preferences
+	# axis_setup_dict = {
+	# 	'init_xpos':0,
+	# 	'init_ypos':10,
+	# 	'temp':{'width':2, 'height':4, 'hspace_after':0.5, 'vspace_after':0},
+	# 	'strat':{'width':0.25, 'height':4, 'hspace_after':0.25, 'vspace_after':0},
+	# 	'cond':{'width':2, 'height':4, 'hspace_after':0.5, 'vspace_after':0},
+	# 	'res':{'width':2, 'height':4, 'hspace_after':-3.75, 'vspace_after':-4.25},
+	# 	'pc':{'width':3.5, 'height':4, 'hspace_after':0.25, 'vspace_after':0},
+	# 	'rc':{'width':3.5, 'height':4, 'hspace_after':-3.75, 'vspace_after':-3},
+	# 	'bullard':{'width':3.5, 'height':4, 'hspace_after':0.25, 'vspace_after':0},
+	# 	'figure_label_inset':0.125,
+	# 	# 'row_spacings':[0.25,1], 'column_spacing':0.25
+	# }
+	# axis_position_dict = {
+	# 	'row1':{'panels':['temp','column_space','column_space','strat','column_space','cond','column_space','res'], 'height':4, 'below_spacing'},
+	# 	'row2':{'panels':['pc','column_space','rc'], 'height':2},
+	# 	'row3':{'panels':['bullard','column_space','bullard'], 'height':2},
+	# 	#'row2':['bullard','column_space','bullard']
+	# }
+	plot_format_dict = set_up_plot_formatting_constant_height(axis_setup_dict, axis_position_dict)
+	
+	# rc('font',**{'family':'sans-serif','sans-serif':['Helvetica']})
+	plt.rcParams['xtick.bottom'] = False
+	plt.rcParams['xtick.labelbottom'] = False
+	plt.rcParams['xtick.top'] = True
+	plt.rcParams['xtick.labeltop'] = True
+	
+	fig = plt.figure(figsize=(plot_format_dict['figure_width'], plot_format_dict['figure_height']), dpi=100)
+	
+	# Plot temperature
+	plot_format_dict_local = plot_format_dict['fractional_pos_dict']['axis_temp']
+	ax00 = fig.add_axes([plot_format_dict_local['frac_xpos'], plot_format_dict_local['frac_ypos'], plot_format_dict_local['panel_frac_width'], plot_format_dict_local['panel_frac_height']], xlabel=r'$T$ / $^{\circ}$C', ylabel=r'$z$ / m')
+	ax00.set_ylim(top=0, bottom=max_depth_m_plot)
+	ax00.set_xlim(left=min_T, right=max_T)
+	ax00.yaxis.set_ticks_position('both')
+	ax00.xaxis.set_ticks_position('both')
+	ax00.xaxis.set_minor_locator(MultipleLocator(2.5))
+	ax00.xaxis.set_major_locator(MultipleLocator(5))
+	ax00.yaxis.set_minor_locator(MultipleLocator(25))
+	ax00.yaxis.set_major_locator(MultipleLocator(50))
+	# ax00.yaxis.set_major_formatter(FormatStrFormatter(''))
+	ax00.xaxis.set_label_position('top') 
+	spl_temp_option_f = 'no'
+	# plot_temperatures(max_depth_m_plot, zT_m, T, zT_error_m, T_error, ax00)
+	if T_plotting_dict['number_lines'] > 0:
+		for line_number in range(T_plotting_dict['number_lines']):
+			tempdict = T_plotting_dict['line' + str(line_number)]
+			plot_temperatures(tempdict, ax00, plot_format_dict_local, plot_format_dict)
+	
+	# Plot stratigraphy
+	if k_distribution != 'in_situ_normal':
+		### TODO temp
+		strat_label_option = 'no'
+		plot_format_dict_local = plot_format_dict['fractional_pos_dict']['axis_strat']
+		ax01 = fig.add_axes([plot_format_dict_local['frac_xpos'], plot_format_dict_local['frac_ypos'], plot_format_dict_local['panel_frac_width'], plot_format_dict_local['panel_frac_height']], ylabel=None)
+		ax01.set_ylim(top=0, bottom=max_depth_m_plot)
+		ax01.set_xlim(left=0, right=1)
+		ax01.yaxis.set_ticks_position('both')
+		ax01.xaxis.set_ticks_position('none')
+		ax01.xaxis.set_minor_locator(MultipleLocator(5))
+		ax01.yaxis.set_minor_locator(MultipleLocator(25))
+		ax01.yaxis.set_major_locator(MultipleLocator(50))
+		ax01.yaxis.set_major_formatter(FormatStrFormatter(''))
+		ax01.xaxis.set_major_formatter(FormatStrFormatter(''))
+		plot_stratigraphy(plot_lith_fill_dict, plot_lith_fill_dict_keyword, strat_interp_lith_k_calcs_df, z_int_plot, plot_format_dict, strat_label_option, ax01)
+	
+	# Plot conductivity
+	plot_format_dict_local = plot_format_dict['fractional_pos_dict']['axis_cond']
+	ax02 = fig.add_axes([plot_format_dict_local['frac_xpos'], plot_format_dict_local['frac_ypos'], plot_format_dict_local['panel_frac_width'], plot_format_dict_local['panel_frac_height']], xlabel=r'$k$ / W m$^{-1}$ K$^{-1}$', ylabel=None)
+	ax02.set_ylim(top=0, bottom=max_depth_m_plot)
+	ax02.set_xlim(left=min_k, right=max_k)
+	ax02.yaxis.set_ticks_position('both')
+	ax02.xaxis.set_ticks_position('both')
+	ax02.xaxis.set_minor_locator(MultipleLocator(1))
+	ax02.xaxis.set_major_locator(MultipleLocator(2))
+	ax02.yaxis.set_minor_locator(MultipleLocator(25))
+	ax02.yaxis.set_major_locator(MultipleLocator(50))
+	ax02.yaxis.set_major_formatter(FormatStrFormatter(''))
+	# ax02.xaxis.set_major_formatter(FormatStrFormatter(''))
+	ax02.xaxis.set_label_position('top') 
+	if k_plotting_dict['number_lines'] > 0:
+		for line_number in range(k_plotting_dict['number_lines']):
+			tempdict = k_plotting_dict['line' + str(line_number)]
+			plot_conductivity(k_distribution, tempdict, ax02, plot_format_dict_local, plot_format_dict)
+	
+	# Plot palaeoclimatic records
+	plot_format_dict_local = plot_format_dict['fractional_pos_dict']['axis_pc']
+	ax10 = fig.add_axes([plot_format_dict_local['frac_xpos'], plot_format_dict_local['frac_ypos'], plot_format_dict_local['panel_frac_width'], plot_format_dict_local['panel_frac_height']])
+	ax10.set_ylabel(r'$\Delta T_s$ / $^{\circ}$C')
+	ax10.set_xlabel('Time before present / ka')
+	ax10.set_xlim(left=0, right=150)
+	ax10.xaxis.set_label_position('bottom')
+	# ax10.set_ylim(top=0, bottom=max_depth_m_plot)
+# 	ax10.set_xlim(left=min_k, right=max_k)
+	ax10.xaxis.tick_bottom()
+	ax10.yaxis.set_ticks_position('both')
+	ax10.xaxis.set_ticks_position('both')
+	ax10.xaxis.set_minor_locator(MultipleLocator(12.5))
+	ax10.xaxis.set_major_locator(MultipleLocator(25))
+	ax10.yaxis.set_minor_locator(MultipleLocator(2.5))
+	ax10.yaxis.set_major_locator(MultipleLocator(5))
+# 	ax10.yaxis.set_major_formatter(FormatStrFormatter(''))
+# 	# ax10.xaxis.set_major_formatter(FormatStrFormatter(''))
+# 	ax10.xaxis.set_label_position('top')
+	plot_palaeoclimate_subplot(ax10, plot_format_dict_local, pc_plotting_dict, plot_format_dict)
+	
+	
+	# Plot recent climate records
+	plot_format_dict_local = plot_format_dict['fractional_pos_dict']['axis_rc']
+	ax11 = fig.add_axes([plot_format_dict_local['frac_xpos'], plot_format_dict_local['frac_ypos'], plot_format_dict_local['panel_frac_width'], plot_format_dict_local['panel_frac_height']])
+	ax11.xaxis.set_label_position('bottom')
+	ax11.yaxis.set_label_position('right')
+	# ax11.set_ylim(top=0, bottom=max_depth_m_plot)
+# 	ax11.set_xlim(left=min_k, right=max_k)
+	ax11.yaxis.tick_right()
+	ax11.xaxis.tick_bottom()
+	ax11.yaxis.set_ticks_position('both')
+	ax11.xaxis.set_ticks_position('both')
+	ax11.set_ylabel(r'$\Delta T_s$ / $^{\circ}$C')
+	ax11.set_xlabel('Time before borehole drilled / years')
+	ax11.xaxis.set_minor_locator(MultipleLocator(12.5))
+	ax11.xaxis.set_major_locator(MultipleLocator(25))
+	ax11.yaxis.set_minor_locator(MultipleLocator(0.25))
+	ax11.yaxis.set_major_locator(MultipleLocator(0.5))
+# 	ax11.yaxis.set_major_formatter(FormatStrFormatter(''))
+# 	# ax11.xaxis.set_major_formatter(FormatStrFormatter(''))
+# 	ax11.xaxis.set_label_position('top')
+	plot_recent_climate_subplot(ax11, plot_format_dict_local, rc_plotting_dict, plot_format_dict)
+	
+	
+	# Plot thermal resistivity if specified
+	if res_plotting_dict != None:
+		plot_format_dict_local = plot_format_dict['fractional_pos_dict']['axis_res']
+		ax03 = fig.add_axes([plot_format_dict_local['frac_xpos'], plot_format_dict_local['frac_ypos'], plot_format_dict_local['panel_frac_width'], plot_format_dict_local['panel_frac_height']], xlabel=r'$R$ / W$^{-1}$ K m$^2$', ylabel=r'$z$ / m')
+		ax03.set_ylim(top=0, bottom=max_depth_m_plot)
+		ax03.set_xlim(left=min_R, right=max_R)
+		ax03.yaxis.tick_right()
+		ax03.yaxis.set_ticks_position('both')
+		ax03.xaxis.set_ticks_position('both')
+		ax03.xaxis.set_minor_locator(MultipleLocator(50))
+		ax03.xaxis.set_major_locator(MultipleLocator(100))
+		ax03.yaxis.set_minor_locator(MultipleLocator(25))
+		ax03.yaxis.set_major_locator(MultipleLocator(50))
+		# ax03.yaxis.set_major_formatter(FormatStrFormatter(''))
+		# ax03.xaxis.set_major_formatter(FormatStrFormatter(''))
+		ax03.xaxis.set_label_position('top')
+		ax03.yaxis.set_label_position('right')
+		if res_plotting_dict['number_lines'] > 0:
+			for line_number in range(res_plotting_dict['number_lines']):
+				tempdict = res_plotting_dict['line' + str(line_number)]
+				plot_resistivity(tempdict, ax03, plot_format_dict_local, plot_format_dict)
+	
+	# Plot Bullard plots if specified
+	# Plot T versus R
+	if bullard_TvR_plotting_dict != None:
+		plot_format_dict_local = plot_format_dict['fractional_pos_dict']['axis_bullard']
+		ax20 = fig.add_axes([plot_format_dict_local['frac_xpos'], plot_format_dict_local['frac_ypos'], plot_format_dict_local['panel_frac_width'], plot_format_dict_local['panel_frac_height']], xlabel=r'$R$ / W$^{-1}$ K m$^2$', ylabel=r'$T$ / $^{\circ}$C')
+		ax20.set_ylim(top=max_T, bottom=min_T)
+		ax20.set_xlim(left=min_R, right=max_R)
+		ax20.xaxis.tick_top()
+		ax20.yaxis.tick_right()
+		ax20.yaxis.set_ticks_position('both')
+		ax20.xaxis.set_ticks_position('both')
+		ax20.xaxis.set_minor_locator(MultipleLocator(50))
+		ax20.xaxis.set_major_locator(MultipleLocator(100))
+		ax20.yaxis.set_minor_locator(MultipleLocator(2.5))
+		ax20.yaxis.set_major_locator(MultipleLocator(5))
+		# ax20.yaxis.set_major_formatter(FormatStrFormatter(''))
+		# ax20.xaxis.set_major_formatter(FormatStrFormatter(''))
+		ax20.xaxis.set_label_position('top')
+		ax20.yaxis.set_label_position('right')
+		if bullard_TvR_plotting_dict['number_lines'] > 0:
+			for line_number in range(bullard_TvR_plotting_dict['number_lines']):
+				tempdict = bullard_TvR_plotting_dict['line' + str(line_number)]
+				plot_bullard(tempdict, ax20, plot_format_dict_local, plot_format_dict)
+	
+	# Plot R versus T
+	if bullard_RvT_plotting_dict != None:
+		plot_format_dict_local = plot_format_dict['fractional_pos_dict']['axis_bullard']
+		ax21 = fig.add_axes([plot_format_dict_local['frac_xpos'], plot_format_dict_local['frac_ypos'], plot_format_dict_local['panel_frac_width'], plot_format_dict_local['panel_frac_height']], xlabel=r'$T$ / $^{\circ}$C', ylabel=r'$R$ / W$^{-1}$ K m$^2$')
+		ax21.set_ylim(top=max_R, bottom=min_R)
+		ax21.set_xlim(left=min_T, right=max_T)
+		ax21.xaxis.tick_bottom()
+		ax21.yaxis.tick_right()
+		ax21.yaxis.set_ticks_position('both')
+		ax21.xaxis.set_ticks_position('both')
+		ax21.xaxis.set_minor_locator(MultipleLocator(2.5))
+		ax21.xaxis.set_major_locator(MultipleLocator(5))
+		ax21.yaxis.set_minor_locator(MultipleLocator(50))
+		ax21.yaxis.set_major_locator(MultipleLocator(100))
+		# ax21.yaxis.set_major_formatter(FormatStrFormatter(''))
+		# ax21.xaxis.set_major_formatter(FormatStrFormatter(''))
+		ax21.xaxis.set_label_position('bottom')
+		ax21.yaxis.set_label_position('right')
+		if bullard_RvT_plotting_dict['number_lines'] > 0:
+			for line_number in range(bullard_RvT_plotting_dict['number_lines']):
+				tempdict = bullard_RvT_plotting_dict['line' + str(line_number)]
+				plot_bullard(tempdict, ax21, plot_format_dict_local, plot_format_dict)
+	
+	# Plot histograms of heat-flow estimates
+	if qhist_plotting_dict != None:
+		plot_format_dict_local = plot_format_dict['fractional_pos_dict']['axis_qhist']
+		ax22 = fig.add_axes([plot_format_dict_local['frac_xpos'], plot_format_dict_local['frac_ypos'], plot_format_dict_local['panel_frac_width'], plot_format_dict_local['panel_frac_height']], xlabel="$q_s \ / \ \mathrm{mW \, m^{-2}}$", ylabel='Probability Density')
+		# ax22.set_ylim(top=max_R, bottom=min_R)
+		# ax22.set_xlim(left=min_q, right=max_q)
+		ax22.xaxis.tick_bottom()
+		ax22.yaxis.tick_right()
+		ax22.yaxis.set_ticks_position('both')
+		ax22.xaxis.set_ticks_position('both')
+		# ax22.xaxis.set_minor_locator(MultipleLocator(2.5))
+		# ax22.xaxis.set_major_locator(MultipleLocator(5))
+		# ax22.yaxis.set_minor_locator(MultipleLocator(50))
+		# ax22.yaxis.set_major_locator(MultipleLocator(100))
+		# ax22.yaxis.set_major_formatter(FormatStrFormatter(''))
+		# ax22.xaxis.set_major_formatter(FormatStrFormatter(''))
+		ax22.xaxis.set_label_position('bottom')
+		ax22.yaxis.set_label_position('right')
+		if qhist_plotting_dict['number_hists'] > 0:
+			for hist_number in range(qhist_plotting_dict['number_hists']):
+				print('hist'+str(hist_number))
+				tempdict = qhist_plotting_dict['hist' + str(hist_number)]
+				plot_heat_flow_histograms(tempdict, ax22, plot_format_dict_local, plot_format_dict)
+	
+	fig.savefig(figure_name + ".jpg", dpi=300, bbox_inches='tight', transparent=True)
+	plt.close(fig)
+	
+	return()
+
+
 	def plot_temperature(self):
 		print('plotting')
 		plt.plot(self.data.borehole.T, self.data.borehole.zT_m, 'x')

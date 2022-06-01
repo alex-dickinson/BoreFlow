@@ -1,3 +1,4 @@
+from wsgiref.types import InputStream
 import numpy as np
 import pandas as pd
 
@@ -699,6 +700,11 @@ def plot_heat_flow_histograms(tempdict, axis, plot_format_dict_local, plot_forma
 
 def plot_temperature_stratigraphy_conductivity(max_depth_m_plot, k_distribution, plot_lith_fill_dict, plot_lith_fill_dict_keyword, strat_interp_lith_k_calcs_df, T_plotting_dict, k_plotting_dict, res_plotting_dict, bullard_TvR_plotting_dict, bullard_RvT_plotting_dict, pc_plotting_dict, rc_plotting_dict, qhist_plotting_dict, T, figure_name):
 	
+	# Set up plot type based on input
+	if plot_type == "T_only":
+		k_plotting_dict = {'number_lines':0}
+		res_plotting_dict = {'number_lines':0} bullard_TvR_plotting_dict, bullard_RvT_plotting_dict, pc_plotting_dict, rc_plotting_dict, qhist_plotting_dict = {'number_lines':0} in_situ_normal
+
 	# Set up figure limits
 	min_depth_m=0
 	max_depth_m=max_depth_m_plot
