@@ -1,4 +1,4 @@
-from wsgiref.types import InputStream
+# from wsgiref.types import InputStream
 import numpy as np
 import pandas as pd
 
@@ -380,6 +380,21 @@ def set_up_plot_formatting_constant_height(axis_setup_dict, axis_position_dict):
 	return(plot_format_dict)
 
 
+def set_up_temperature_axes(fig, plot_format_dict_local, min_depth_m_plot, max_depth_m_plot, min_T, max_T):
+	ax00 = fig.add_axes([plot_format_dict_local['frac_xpos'], plot_format_dict_local['frac_ypos'], plot_format_dict_local['panel_frac_width'], plot_format_dict_local['panel_frac_height']], xlabel=r'$T$ / $^{\circ}$C', ylabel=r'$z$ / m')
+	ax00.set_ylim(top=min_depth_m_plot, bottom=max_depth_m_plot)
+	ax00.set_xlim(left=min_T, right=max_T)
+	ax00.yaxis.set_ticks_position('both')
+	ax00.xaxis.set_ticks_position('both')
+	ax00.xaxis.set_minor_locator(MultipleLocator(2.5))
+	ax00.xaxis.set_major_locator(MultipleLocator(5))
+	ax00.yaxis.set_minor_locator(MultipleLocator(25))
+	ax00.yaxis.set_major_locator(MultipleLocator(50))
+	# ax00.yaxis.set_major_formatter(FormatStrFormatter(''))
+	ax00.xaxis.set_label_position('top')
+	return(ax00)
+
+
 # ### Plot temp against depth with fitted line
 # def plot_simple_heat_flow(z_T_f, sigma_z_T_f, T_f, sigma_T_f, z_k_f, sigma_z_k_f, k_f, sigma_k_f, dTdz_f, sigma_dTdz_f, dTdz_km_f, sigma_dTdz_km_f, T0_f, sigma_T0_f, cov_dTdz_T0_f, r_dTdz_T0_f, dof_f, dTdz_T0_chi_sq_f, dTdz_T0_reduced_chi_sq_f, mean_k_round_f, std_mean_k_round_f, weighted_mean_k_round_f, std_weighted_mean_k_round_f, Q_f, sigma_Q_f, image):
 #
@@ -479,8 +494,13 @@ def plot_stratigraphy(plot_lith_fill_dict, plot_lith_fill_dict_keyword, strat_in
 	return()
 
 def plot_temperatures(tempdict, axis, plot_format_dict_local, plot_format_dict):
+
+	
+
 	if tempdict['line_type'] == 'errorbar':
-		axis.errorbar(tempdict['T_plot'], tempdict['zT_m_plot'], xerr=tempdict['T_error_plot'], yerr=tempdict['zT_error_m_plot'], fmt=tempdict['fmt'], markeredgecolor=tempdict['markeredgecolor'], alpha=tempdict['alpha'])
+
+
+		axis.errorbar(tempdict['T_plot'], tempdict['z_plot'], xerr=tempdict['T_error_plot'], yerr=tempdict['z_error_plot'], fmt=tempdict['fmt'], markeredgecolor=tempdict['markeredgecolor'], alpha=tempdict['alpha'])
 	# if spl_temp_option_f == 'no':
 	# 	axis.errorbar(T, zT_m, xerr=T_error, yerr=zT_error_m, fmt='.k', markeredgecolor='k')
 	# elif spl_temp_option_f == 'yes':
@@ -488,7 +508,7 @@ def plot_temperatures(tempdict, axis, plot_format_dict_local, plot_format_dict):
 		# axis.errorbar(T_k_f, zk_m_f, yerr=zk_error_m_f, color='red', fmt='.')
 	if tempdict['line_type'] == 'mc_results':
 		# TODO Resample
-		heatmap, xedges, yedges = np.histogram2d(tempdict['T_plot'][~np.isnan(tempdict['T_plot'])].ravel(), tempdict['zT_m_plot'][~np.isnan(tempdict['zT_m_plot'])].ravel(), bins=[200,100], density=True)
+		heatmap, xedges, yedges = np.histogram2d(tempdict['T_plot'][~np.isnan(tempdict['T_plot'])].ravel(), tempdict['z_plot'][~np.isnan(tempdict['z_plot'])].ravel(), bins=[200,100], density=True)
 		heatmap = heatmap.T
 		X, Y = np.meshgrid(xedges, yedges)
 		axis.pcolormesh(X, Y, heatmap, cmap=tempdict['colors'])
@@ -701,9 +721,9 @@ def plot_heat_flow_histograms(tempdict, axis, plot_format_dict_local, plot_forma
 def plot_temperature_stratigraphy_conductivity(max_depth_m_plot, k_distribution, plot_lith_fill_dict, plot_lith_fill_dict_keyword, strat_interp_lith_k_calcs_df, T_plotting_dict, k_plotting_dict, res_plotting_dict, bullard_TvR_plotting_dict, bullard_RvT_plotting_dict, pc_plotting_dict, rc_plotting_dict, qhist_plotting_dict, T, figure_name):
 	
 	# Set up plot type based on input
-	if plot_type == "T_only":
-		k_plotting_dict = {'number_lines':0}
-		res_plotting_dict = {'number_lines':0} bullard_TvR_plotting_dict, bullard_RvT_plotting_dict, pc_plotting_dict, rc_plotting_dict, qhist_plotting_dict = {'number_lines':0} in_situ_normal
+	# if plot_type == "T_only":
+	# 	k_plotting_dict = {'number_lines':0}
+	# 	res_plotting_dict = {'number_lines':0} bullard_TvR_plotting_dict, bullard_RvT_plotting_dict, pc_plotting_dict, rc_plotting_dict, qhist_plotting_dict = {'number_lines':0} in_situ_normal
 
 	# Set up figure limits
 	min_depth_m=0
