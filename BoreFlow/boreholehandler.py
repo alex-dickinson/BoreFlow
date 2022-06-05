@@ -1,3 +1,39 @@
+
+   
+# Copyright 2022 Alex Dickinson, Ben Mather, Mark Ireland
+#
+# This file is part of BoreFlow.
+#
+# BoreFlow is free software: you can redistribute it and/or modify
+# it under the terms of the GNU Lesser General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or any later version.
+#
+# BoreFlow is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU Lesser General Public License for more details.
+#
+# You should have received a copy of the GNU Lesser General Public License
+# along with BoreFlow.  If not, see <http://www.gnu.org/licenses/>.
+
+"""
+This BoreFlow module contains the `boreflow.BoreHole` class,
+which can be initialised using a YAML file.
+It contains methods for manipulating all data (temperature, thermal conductivity, stratigraphy, climatic history) needed to estimate heat flow from borehole measurements. Specifically, it contains the following subclasses:
+
+- `boreflow.BoreHole.data`
+    - `boreflow.BoreHole.data.borehole`: class for handling all measurements and observations made within a borehole (i.e. temperature, thermal conductivity, stratigraphy) and for estimating properties from these data
+
+Functions within these subclasses call functions from the following modules:
+
+- `general_python_functions.py`: miscellaneous functions for converting units, smoothing times series, rounding figures to an appropriate number of significant figures, fitting lines to data, and computing statistical properties (e.g. different forms of the mean average)
+- `plotting_functions.py`: functions for plotting all of the inputs and outputs of BoreFlow
+
+"""
+
+# -*- coding: utf-8 -*-
+
+
 import numpy as np
 import pandas as pd
 # import dataclasses
@@ -519,21 +555,9 @@ class BoreHole:
 			plt.close(fig)
 
 
-	def plot_temperature(self):
-		print('plotting')
-		plt.plot(self.data.borehole.T, self.data.borehole.zT_m, 'x')
+
 	
-	def test_value_creation(self, suffix):
-		
-		setattr(self.data.borehole, suffix, general_python_functions.EmptyClass())
-		
-		xd = getattr(self.data.borehole, 'bigboy')
-		xd.temp = np.array([1,2,3,4])
-		
-		
-		
-		# self.data.borehole.suffix = general_python_functions.EmptyClass()
-# 		self.data.borehole.suffix.testdata = np.linspace(1,10,1)
+
 		
 		
 		
