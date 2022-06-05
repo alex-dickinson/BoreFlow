@@ -28,7 +28,7 @@ Extra dependencies for running example notebooks:
 for running notebooks using either Jupyter Notebook or JupyterLab.
 
 
-To set up BoreFlow, first create conda environment:
+To set up `BoreFlow`, first create conda environment:
 
 ```conda create --name NAME```
 
@@ -45,9 +45,9 @@ Add conda environment as a Jupyter kernel:
 ```ipython kernel install --name "NAME" --user```
 
 
-To install BoreFlow with its base dependencies:
+To install `BoreFlow` with its base dependencies:
 
-Navigate to directory BoreFlow
+Navigate to directory `BoreFlow`
 
 
 
