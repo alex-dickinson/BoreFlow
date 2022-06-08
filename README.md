@@ -67,7 +67,7 @@ pip install .[examples]
 
 `BoreFlow` is in preparation for submission to [Frontiers in Earth Science](https://www.frontiersin.org/journals/earth-science). If you use the software, please cite it as:
 
-Dickinson, A., Mather, B., and Ireland, M.T. (_in prep._). BoreFlow: A Python module for estimating terrestrial heat flow from borehole measurements.
+Dickinson, A., Mather, B., and Ireland, M.T. (_in prep._). BoreFlow: A Python module for estimating geothermal heat flow from borehole measurements.
 
 
 
