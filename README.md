@@ -1,10 +1,10 @@
 # BoreFlow
 
+`BoreFlow` is a Python package for estimating geothermal heat flow from borehole measurements of temperature and thermal conductivity, and from estimates of climatic change. In contrast to most previous approaches to estimating borehole heat flow, it assigns quantitative uncertainties to estimated values. 
 
-Magnetic data is one of the most common geophysics datasets available on the surface of the Earth. Curie depth is the depth at which rocks lose their magnetism. The most prevalent magnetic mineral is magnetite, which has a Curie point of 580°C, thus the Curie depth is often interpreted as the 580°C isotherm.
+We are currently improving `BoreFlow` by writing notebooks to illustrate its use. We hope to submit the code for publication in [Frontiers in Earth Science](https://www.frontiersin.org/journals/earth-science). If you use the software in the meantime, please cite it as:
 
-Current methods to derive Curie depth first compute the (fast) Fourier transform over a square window of a magnetic anomaly that has been reduced to the pole. The depth and thickness of magnetic sources is estimated from the slope of the radial power spectrum. `pycurious` implements the Tanaka *et al.* (1999) and Bouligand *et al.* (2009) methods for computing the thickness of a buried magnetic source. `pycurious` ingests maps of the magnetic anomaly and distributes the computation of Curie depth across multiple CPUs. Common computational workflows and geospatial manipulation of magnetic data are covered in the Jupyter notebooks bundled with this package.
-
+Dickinson, A., Mather, B., and Ireland, M.T. (_in prep._). BoreFlow: A Python package for estimating terrestrial heat flow from borehole measurements.
 
 
 ## Installation
@@ -63,11 +63,7 @@ pip install .[examples]
 
 
 
-#### Citation
 
-`BoreFlow` is in preparation for submission to [Frontiers in Earth Science](https://www.frontiersin.org/journals/earth-science). If you use the software, please cite it as:
-
-Dickinson, A., Mather, B., and Ireland, M.T. (_in prep._). BoreFlow: A Python module for estimating terrestrial heat flow from borehole measurements.
 
 
 

@@ -13,3 +13,12 @@ pip-wheel-metadata/
 
 # Example images
 *.jpg
+
+# Unused modules
+BoreFlow_nonobject/
+examples/Untitled.ipynb
+examples/Untitled1.ipynb
+examples/ex1_config.yaml
+examples/run_borehole_analysis.ipynb
+examples/run_borehole_analysis_object.ipynb
+examples/example_data/
