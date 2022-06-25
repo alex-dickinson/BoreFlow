@@ -60,14 +60,3 @@ To install extra dependencies for running example notebooks:
 ```bash
 pip install .[examples]
 ```
-
-
-
-
-<<<<<<< HEAD
-=======
-Dickinson, A., Mather, B., and Ireland, M.T. (_in prep._). BoreFlow: A Python module for estimating geothermal heat flow from borehole measurements.
->>>>>>> 199bc1cb13765cf25d5f7418fc1192d770096479
-
-
-
